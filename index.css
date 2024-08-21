@@ -61,8 +61,8 @@ button {
 }
 
 #description {
-  font-size: 1.2em;
-  line-height: 1.5;
+  font-size: 1.3em;
+  line-height: 2.2;
   margin-top: 28px;
   padding: 28px;
   margin-bottom: 75px;
@@ -91,14 +91,21 @@ button {
 
 /* Button styling */
 #startbutton {
-  background-color: #ff9900; /* Button color */
-  border: none;
+  background-color: #c92e1ad3; /* Button color */
+  border: 2px solid #f39f94; /* Border color */
+  border-radius: 34px;
   color: #fff;
   padding: 15px 30px;
   font-size: 1.2em;
+  font-family: "Avenis";
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  opacity: 0; /* Start fully transparent */
+  transform: translateY(20px); /* Start from a lower position */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#startbutton.show {
+  animation: buttonFadeIn 0.5s forwards; /* Trigger the animation */
 }
 
 #startbutton:hover {
@@ -387,4 +394,15 @@ button {
 @font-face {
   font-family: "Avenis";
   src: url(./resources/Avenis.otf);
+}
+
+@keyframes buttonFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

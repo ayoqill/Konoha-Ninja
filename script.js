@@ -60,6 +60,30 @@ header.classList.add('hidden');
 main.classList.add('hidden');
 footer.classList.add('hidden');
 
+let i = 0;
+const txt = `In a time long forgotten, the peace of the Hidden Village is shattered by the ominous rumble of an impending war. Shadows creep across the land, and whispers of a formidable enemy reach the ears of the Village's bravest. The once tranquil nights are now filled with the distant cries of battle, and the skies darken with foreboding clouds.
+
+As the Village's protector, you are tasked with a monumental duty to choose your shinobi wisely. Each warrior, with their unique powers and abilities, stands ready to defend the village from the encroaching darkness. Will you enlist the might of the legendary heroes or the swift blades of the skilled ninjas?
+
+The fate of the Hidden Village rests in your hands. Forge your path, summon your courage, and prepare for an epic clash. The battle to protect your home begins now. The great war awaits.`;
+
+const speed = 36; // Adjust this speed for faster or slower typing
+
+function typeWriter() {
+    if (i < txt.length) {
+        document.getElementById("description").innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+    }else {
+        // Typewriter effect completed, show the button
+        document.getElementById("startbutton").classList.add('show');
+    }
+}
+
+// Start the typewriter effect once the page loads
+window.onload = function() {
+    typeWriter();
+};
 
 
 // Game Logic
