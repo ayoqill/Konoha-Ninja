@@ -31,42 +31,68 @@ const characterImage = {
 };
 
 const backgroundMusic = document.getElementById('backgroundMusic');
+const startMusic = document.getElementById('startMusic');
+const introScreen = document.getElementById('intro');
+const startContainer = document.getElementById('startcontainer');
+const main = document.getElementById('main');
+const header = document.querySelector('.header');
+const footer = document.getElementById('footer');
+const startButton = document.getElementById('startbutton');
 
-// Function to start the music
-function playMusic() {
+// Function to start the background music
+function playBackgroundMusic() {
     if (backgroundMusic) {
         backgroundMusic.play();
     }
 }
 
-// JavaScript to handle the start page
-const startButton = document.getElementById('startbutton');
-const startContainer = document.getElementById('startcontainer');
-const main = document.getElementById('main');
-const header = document.querySelector('.header');
-const footer = document.getElementById('footer');
+// Function to start the start page music
+function playStartPageMusic() {
+    if (startMusic) {
+        console.log('Trying to play start page music');
+        startMusic.play().catch(error => {
+            console.error('Error playing start page music:', error);
+        });
+    } else {
+        console.error('Start music element not found');
+    }
+}
 
-// Hide the start container and show the game
-startButton.addEventListener('click', () => {
+// Function to switch to game music
+function switchToGameMusic() {
+    if (startMusic) {
+        startMusic.pause();
+        startMusic.currentTime = 0; // Reset start music to the beginning
+    }
+    playBackgroundMusic(); // Start game music
+}
+
+// Function to hide the intro screen and show the start container
+function startGame() {
+    introScreen.style.display = 'none';
+    startContainer.classList.remove('hidden');
+    playStartPageMusic(); // Start the start page music
+}
+
+// Function to start the game and switch to game music
+function startGameFromStartContainer() {
     startContainer.classList.add('hidden');
     main.classList.remove('hidden');
     header.classList.remove('hidden');
     footer.classList.remove('hidden');
-    playMusic(); // Start the background music when the game starts
-});
+    switchToGameMusic(); // Switch to the game music when starting
+}
 
-// Initially hide the main game and footer, show only the start page
-header.classList.add('hidden');
-main.classList.add('hidden');
-footer.classList.add('hidden');
+// Start the intro screen
+introScreen.addEventListener('click', startGame);
 
+// Typewriter effect variables
 let i = 0;
 const txt = `In a time long forgotten, the peace of the Hidden Village is shattered by the ominous rumble of an impending war. Shadows creep across the land, and whispers of a formidable enemy reach the ears of the Village's bravest. The once tranquil nights are now filled with the distant cries of battle, and the skies darken with foreboding clouds.
 
 As the Village's protector, you are tasked with a monumental duty to choose your shinobi wisely. Each warrior, with their unique powers and abilities, stands ready to defend the village from the encroaching darkness. Will you enlist the might of the legendary heroes or the swift blades of the skilled ninjas?
 
 The fate of the Hidden Village rests in your hands. Forge your path, summon your courage, and prepare for an epic clash. The battle to protect your home begins now. The great war awaits.`;
-
 const speed = 36; // Adjust this speed for faster or slower typing
 
 function typeWriter() {
@@ -74,17 +100,25 @@ function typeWriter() {
         document.getElementById("description").innerHTML += txt.charAt(i);
         i++;
         setTimeout(typeWriter, speed);
-    }else {
+    } else {
         // Typewriter effect completed, show the button
-        document.getElementById("startbutton").classList.add('show');
+        startButton.classList.add('show');
     }
 }
 
-// Start the typewriter effect once the page loads
-window.onload = function() {
-    typeWriter();
-};
+// Start the typewriter effect once the start page is visible
+function initializeStartPage() {
+    playStartPageMusic(); // Start the start page music
+    typeWriter(); // Start the typewriter effect
+}
 
+// Hide the start container and show the game
+startButton.addEventListener('click', startGameFromStartContainer);
+
+// Initially hide the main game and footer, show only the start page
+header.classList.add('hidden');
+main.classList.add('hidden');
+footer.classList.add('hidden');
 
 // Game Logic
 function playRound(userChoice, computerChoice) {
@@ -130,7 +164,6 @@ function handleClick(userChoice) {
         return;
     }
 
-    playMusic(); // Start the music when the game starts
     const computerChoice = getRandomChoice();
     playRound(userChoice, computerChoice);
     updateChoices(userChoice, computerChoice);
@@ -186,8 +219,9 @@ function restartGame() {
     updateScore();
     resetChoices();
     closeEndgameModal();
-    //backgroundMusic.pause(); // Stop the music when restarting the game
-    //backgroundMusic.currentTime = 0; // Reset music to the beginning
+    // Optionally reset background music if needed
+    // backgroundMusic.pause();
+    // backgroundMusic.currentTime = 0;
 }
 
 function resetChoices() {
@@ -197,3 +231,7 @@ function resetChoices() {
     PlayerScore.innerText = 'Player: 0';
     ComputerScore.innerText = 'Computer: 0';
 }
+
+// Initialize the start page
+window.onload = initializeStartPage;
+
