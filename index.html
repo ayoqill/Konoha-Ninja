@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naruto Game</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="icon.ico"/>
+    <script src="https://kit.fontawesome.com/4c536a6bd5.js" crossorigin="anonymous"></script>
+    <style>
+        /* Ensure gamecontainer is hidden initially */
+        #gamecontainer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Start Page -->
+    <div id="startcontainer">
+        <h1 id="starttitle">The Great War of the Hidden Leaf Village</h1>
+        <p id="description">
+            In a time long forgotten, the peace of the Hidden Village is shattered by the ominous rumble of an impending war. Shadows creep across the land, and whispers of a formidable enemy reach the ears of the Village's bravest. The once tranquil nights are now filled with the distant cries of battle, and the skies darken with foreboding clouds.
+            <br><br>
+            As the Village's protector, you are tasked with a monumental duty to choose your shinobi wisely. Each warrior, with their unique powers and abilities, stands ready to defend the village from the encroaching darkness. Will you enlist the might of the legendary heroes or the swift blades of the skilled ninjas?
+            <br><br>
+            The fate of the Hidden Village rests in your hands. Forge your path, summon your courage, and prepare for an epic clash. The battle to protect your home begins now. The great war awaits.
+        </p>
+        <button id="startbutton">Start Game</button>
+    </div>
+
+    <!-- Game Content -->
+    <div id="main" class="hidden">
+        <header class="header">
+            <h1 id="title">Kampung Konoha</h1>
+        </header>
+
+        <main>
+            <div id="scoreboard">
+                <div id="scoreboardinfo">Choose Your Shinobi to fight the Evil</div>
+                <div id="scoreboardmessage">First to score 5 points win The Great War</div>
+            </div>
+
+            <div id="scores">
+                <div id="GoodShinobi">
+                    <div class="sign" id="playerSign">❔</div>
+                    <div class="sign" id="PlayerScore">Player: 0</div>
+                </div>
+                <div id="EvilShinobi">
+                    <div class="sign" id="computerSign">❔</div>
+                    <div class="sign" id="ComputerScore">Computer: 0</div>
+                </div>
+            </div>
+
+            <div id="characters">
+                <div id="charactersrow1">
+                    <button class="square" id="rocklee">
+                        <div class="character-name">Rock Lee</div>
+                    </button>
+                    <button class="square" id="HayateSensei">
+                        <div class="character-name">Hayate Sensei</div>
+                    </button>
+                    <button class="square" id="tsunade">
+                        <div class="character-name">Tsunade</div>
+                    </button>
+                </div>
+                <div id="charactersrow2">
+                    <button class="square" id="naruto">
+                        <div class="character-name">Naruto</div>
+                    </button>
+                    <button class="square" id="itachi">
+                        <div class="character-name">Itachi</div>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer id="footer" class="hidden">
+            <p>
+                Copyright ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>
+                aqillaimannㅤ
+            </p>
+            <a href="https://github.com/ayoqill" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+        </footer>
+
+        <div class="modal" id="endgameModal">
+            <p id="endgameMessage"></p>
+            <button id="restartBtn">Play Again</button>
+        </div>
+
+        <audio id="backgroundMusic" src="./resources/main-actor-MV.mp3" loop preload="auto"></audio> 
+
+        <div id="overlay"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const startButton = document.getElementById('startbutton');
+            const startContainer = document.getElementById('startcontainer');
+            const gameContainer = document.getElementById('gamecontainer');
+            const backgroundMusic = document.getElementById('backgroundMusic');
+
+            startButton.addEventListener('click', function() {
+                startContainer.style.display = 'none';
+                gameContainer.style.display = 'block';
+                backgroundMusic.play();
+            });
+        });
+    </script>
+</body>
+</html>
+

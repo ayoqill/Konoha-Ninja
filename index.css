@@ -1,0 +1,390 @@
+:root {
+  --primary-light: #ddd;
+  --primary-dark: #222831;
+  --secondary-dark: #393e46;
+  --secondary-dark-hover: #4a4f57;
+  --secondary-dark-active: #5b5f68;
+  --header: #111720;
+  --primary-yellow: #fac650;
+}
+
+/* Global Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+button {
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Start Page Styling */
+#startcontainer {
+  position: fixed; /* Use fixed positioning to cover the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10; /* Ensure it's on top of other content */
+  background-image: url('./resources/wallbackground.jpg'); /* Default background image */
+  background-size: cover;
+  background-position: center;
+  padding: 106px;
+}
+
+#description {
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin-top: 28px;
+  padding: 28px;
+  margin-bottom: 75px;
+  font-family: "Avenis";
+  text-shadow: #ccc 0 0 10px;
+}
+
+#startcontainer.started {
+  background-image: url('./resources/wallbackground.jpg'); /* Background image after start */
+  background-color: rgba(0, 0, 0, 0.8); /* Slightly different background color */
+  transition: background-image 1s ease-in-out; /* Smooth transition */
+}
+
+#gamecontainer.show {
+  display: block;
+}
+
+/* Title styling */
+#starttitle {
+  font-size: 66px;
+  color: red;
+  font-family: "BOONE";
+  mix-blend-mode: hard-light;
+  border: 2px;
+}
+
+/* Button styling */
+#startbutton {
+  background-color: #ff9900; /* Button color */
+  border: none;
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+#startbutton:hover {
+  background-color: #e68a00; /* Darker shade on hover */
+}
+
+#startbutton:active {
+  transform: scale(0.95);
+}
+
+.hidden {
+  display: none;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  background-color: var(--header);
+  width: 100%;
+  margin-bottom: 85px;
+}
+
+#title {
+  font-size: 48px;
+  color: var(--primary-yellow);
+  font-family: "BOONE";
+}
+
+/* MAIN */
+#main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-image: url("./resources/konoha.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#scoreboard {
+  margin-bottom: 15px;
+  margin-top: -70px;
+}
+
+#scoreboardinfo {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "Timeless Memories";
+  margin-bottom: 13px;
+}
+
+#scoreboardmessage {
+  font-size: 27px;
+  margin-bottom: 15px;
+  font-family: "Avenis";
+}
+
+#scores {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 500px;
+  padding: 0;
+  gap: 27px;
+  margin: 0 auto;
+}
+
+#GoodShinobi, #EvilShinobi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  min-height: 190px;
+  background-color: #f4f4f425;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#PlayerScore, #ComputerScore {
+  margin: 10px 0 20px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#characters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 20px;
+}
+
+#charactersrow1, #charactersrow2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Shinobi Image Styling */
+.shinobi-image {
+  width: 163px;
+  height: 173px;
+  object-fit: cover;
+  border-radius: 25%;
+  border: 3px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 3px;
+}
+
+.character-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.square {
+  width: 188px;
+  height: 93px;
+  border-radius: 10px;
+  background-color: var(--secondary-dark);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.square:hover {
+  background-color: var(--secondary-dark-hover);
+}
+
+.square:active {
+  background-color: var(--secondary-dark-active);
+}
+
+.sign {
+  font-size: 110px;
+  margin-bottom: 0px;
+}
+
+/* FOOTER */
+#footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--header);
+  color: var(--primary-light);
+  font-size: 20px;
+  margin-top: auto; /* This pushes the footer to the bottom of the page */
+  text-align: center; /* Ensures content inside the footer is centered */
+}
+
+.fa-github {
+  color: var(--primary-light);
+  font-size: 24px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+  transform: rotate(360deg) scale(1.2);
+}
+
+/* MODALS */
+#endgameModal {
+  position: fixed;
+  z-index: 10;
+  top: 51%;
+  left: 50%;
+  transform: translate(-50%, -60%); /* Start slightly above */
+  width: 699px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: var(--primary-dark);
+  text-align: center;
+  font-size: 30px;
+  user-select: none;
+  display: none;
+  opacity: 0; /* Start fully transparent */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#endgameModal.active {
+  display: block;
+  animation: slideIn 0.5s forwards; /* Trigger the animation */
+}
+
+#endgameMessage {
+  font-size: 40px;
+  font-weight: 500;
+  font-family: "Avenis";
+}
+
+#restartBtn {
+  padding: 10px 20px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: red;
+  background-color: whitesmoke;
+  border-radius: 31px;
+  font-family: "Timeless Memories";
+  font-size: 24px;
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9;
+}
+
+#overlay.active {
+  display: block;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .shinobi-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  #GoodShinobi, #EvilShinobi {
+    min-width: 100px;
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 550px) {
+  #title {
+    font-size: 18px;
+  }
+
+  #scoreboardinfo {
+    font-size: 26px;
+  }
+
+  #charactersrow1, #charactersrow2 {
+    gap: 10px;
+  }
+
+  #square {
+    width: 100px;
+    height: 100px;
+  }
+
+  .sign {
+    font-size: 50px;
+  }
+
+  #endgameModal {
+    width: 95%;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translate(-50%, -60%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+@font-face {
+  font-family: "BOONE";
+  src: url(./resources/BOONE.otf);
+}
+
+@font-face {
+  font-family: "Timeless Memories";
+  src: url(./resources/TimelessMemoriesRegular-2vvwo.otf);
+}
+
+@font-face {
+  font-family: "Avenis";
+  src: url(./resources/Avenis.otf);
+}
